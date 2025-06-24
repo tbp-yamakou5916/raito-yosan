@@ -1,0 +1,11 @@
+@use 'sass:math';
+
+@use '../../foundation/mixin' as *;
+@use '../../foundation/variable' as *;
+
+/* アウトプットフォーム */
+.c-output {
+  .form-control {
+    background-color: #e8f1f9;
+  }
+}

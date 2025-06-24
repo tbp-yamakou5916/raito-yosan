@@ -1,0 +1,161 @@
+@use './variable' as *;
+@use './mixin' as *;
+
+html {
+  font-size: 100%;
+}
+body {
+  font-size: 1rem;
+}
+.text-xxs {
+  font-size: 0.60rem;
+}
+.no_label {
+  margin-top: 2.4rem;
+}
+.content-wrapper {
+  padding-bottom: 10px;
+}
+/* 上部共通 */
+.navbar-nav {
+  align-items: center;
+  &--title {
+    padding-left: 0.5rem;
+    font-size: 1.2rem;
+  }
+}
+
+/* ログインページ */
+.login-page, .register-page {
+  background-color: #F1F7FA;
+}
+
+/** **************************************
+ 左メニュー
+ ************************************** */
+[class*=sidebar-dark-] {
+  background-color: #01549C;
+}
+/* 左タイトル */
+.brand-link {
+  .brand-image {
+    float: none;
+    width: 100%;
+    opacity: 1 !important;
+    max-height: inherit;
+    margin-inline: 0;
+    .sidebar-collapse & {
+      display: none;
+    }
+  }
+  .brand-text {
+    display: none;
+  }
+  .sidebar-collapse & {
+    height: 4.6rem;
+    display: flex;
+
+    &:after {
+      content: '';
+      display: block;
+      width: 4.6rem;
+      height: 4.6rem;
+      background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%3E%20%3Crect%20width%3D%2248%22%20height%3D%2248%22%20fill%3D%22white%22%2F%3E%20%3Cpath%20d%3D%22M23.5162%205L9.2832%2027.79C13.5041%2025.0093%2018.4477%2023.5272%2023.5022%2023.5272C28.5567%2023.5272%2033.5003%2025.0093%2037.7212%2027.79L23.5162%205Z%22%20fill%3D%22%2300559C%22%2F%3E%20%3Cpath%20d%3D%22M38.549%2029.086H8.492L5%2034.625C17.2509%2032.5757%2029.7571%2032.5757%2042.008%2034.625L38.549%2029.086Z%22%20fill%3D%22%23F0532D%22%2F%3E%20%3Cpath%20d%3D%22M13.9721%2035.357H16.6981C16.9823%2035.3602%2017.2536%2035.4756%2017.453%2035.6781C17.6523%2035.8807%2017.7635%2036.1538%2017.7621%2036.438V38.238C17.7624%2038.439%2017.7051%2038.6358%2017.597%2038.8052C17.4889%2038.9746%2017.3345%2039.1096%2017.1521%2039.194L18.8221%2042.025H17.1521L15.0381%2038.387H16.2471V36.438H14.4271V42.029H12.9121V36.438C12.9108%2036.1545%2013.0214%2035.8819%2013.2198%2035.6795C13.4183%2035.4771%2013.6887%2035.3612%2013.9721%2035.357Z%22%20fill%3D%22%2300559C%22%2F%3E%20%3Cpath%20d%3D%22M25.6331%2036.871H24.1191V42.029H25.6331V36.871Z%22%20fill%3D%22%2300559C%22%2F%3E%20%3Cpath%20d%3D%22M25.6321%2035.357H24.1191V36.438H25.6321V35.357Z%22%20fill%3D%22%2300559C%22%2F%3E%20%3Cpath%20d%3D%22M27.7444%2035.357H26.2324V41.116C26.2345%2041.3583%2026.3319%2041.59%2026.5035%2041.761C26.6751%2041.9321%2026.9071%2042.0287%2027.1494%2042.03H28.6584V41.116H27.7444V37.784H28.6564V36.871H27.7444V35.357Z%22%20fill%3D%22%2300559C%22%2F%3E%20%3Cpath%20d%3D%22M22.606%2036.871H18.972V37.784H21.998V38.384H19.581C19.3385%2038.3845%2019.1061%2038.4811%2018.9346%2038.6526C18.7631%2038.8241%2018.6665%2039.0565%2018.666%2039.299V40.818L19.429%2042.026H23.511V37.784C23.5075%2037.5443%2023.4112%2037.3154%2023.2425%2037.1451C23.0737%2036.9749%2022.8456%2036.8767%2022.606%2036.871ZM21.998%2041.116H20.18V39.302H21.999L21.998%2041.116Z%22%20fill%3D%22%2300559C%22%2F%3E%20%3Cpath%20d%3D%22M33.1836%2036.871H30.1656C29.928%2036.8813%2029.7031%2036.9811%2029.5361%2037.1505C29.3691%2037.3199%2029.2725%2037.5463%2029.2656%2037.784V41.116C29.2686%2041.3549%2029.3641%2041.5833%2029.5319%2041.7533C29.6997%2041.9234%2029.9268%2042.0218%2030.1656%2042.028H33.1836C33.4252%2042.0232%2033.6556%2041.9256%2033.8271%2041.7554C33.9986%2041.5852%2034.098%2041.3555%2034.1046%2041.114V37.784C34.1%2037.5419%2034.0012%2037.3112%2033.8292%2037.1408C33.6573%2036.9703%2033.4257%2036.8736%2033.1836%2036.871ZM32.5946%2041.116H30.7646V37.784H32.5956L32.5946%2041.116Z%22%20fill%3D%22%2300559C%22%2F%3E%3C%2Fsvg%3E');
+      background-repeat: no-repeat;
+      background-position: top center;
+    }
+  }
+}
+/* フリーフォーム */
+.free-form-nav {
+  /*
+  display: none;
+  .is-project & {
+    display: block;
+  }
+   */
+}
+.mode2-nav {
+  display: none;
+  .is-free-form.mode2 & {
+    display: block;
+  }
+}
+.mode3-nav {
+  display: none;
+  .is-free-form.mode3 & {
+    display: block;
+  }
+}
+/* モード表示 */
+.last-nav-item {
+  border-bottom: 3px solid #1B65A6;
+}
+
+/** **************************************
+ プロジェクト表示
+ ************************************** */
+.callout {
+  border-radius: 0.2rem;
+  padding-block: 0.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h5 {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    font-size: 1rem;
+  }
+  select {
+    width: 200px;
+  }
+}
+
+/** **************************************
+ ファイルアップロード
+ ************************************** */
+.file_upload_form {
+  width: 100%;
+}
+.custom-file-label::after {
+  content: '参照';
+}
+.custom-file {
+  font-size: 16px;
+}
+.input-group > .custom-select {
+  width: 10px;
+}
+
+/** **************************************
+ datatable
+ ************************************** */
+.p-0 {
+  .dataTable {
+    width: 100% !important;
+    &.table {
+      box-sizing: border-box;
+      border-collapse: collapse;
+      thead th,
+      thead td {
+        border-bottom: 2px solid #dee2e6;
+      }
+    }
+  }
+  .dataTables_wrapper {
+    .dataTables_length {
+      margin: 10px 0 0 10px;
+    }
+    .dataTables_filter {
+      margin: 10px 10px 0 0;
+    }
+    .dataTables_info {
+      margin: 0 0 10px 10px;
+    }
+    .dataTables_paginate {
+      margin: 0 10px 10px 0;
+    }
+  }
+}

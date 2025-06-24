@@ -1,0 +1,11 @@
+@use 'sass:math';
+
+@use '../../foundation/mixin' as *;
+@use '../../foundation/variable' as *;
+
+.c-reset {
+  display: none;
+  .is-project & {
+    display: block;
+  }
+}

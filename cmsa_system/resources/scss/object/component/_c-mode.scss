@@ -1,0 +1,33 @@
+@use 'sass:math';
+
+@use '../../foundation/mixin' as *;
+@use '../../foundation/variable' as *;
+
+
+.c-mode-change {
+  display: none;
+  .is-free-form & {
+    display: block;
+  }
+}
+
+.c-mode {
+  display: none;
+  width: 100%;
+  color: #fff !important;
+  &-m1 {
+    .is-free-form.mode1 & {
+      display: block;
+    }
+  }
+  &-m2 {
+    .is-free-form.mode2 & {
+      display: block;
+    }
+  }
+  &-m3 {
+    .is-free-form.mode3 & {
+      display: block;
+    }
+  }
+}

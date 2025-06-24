@@ -1,0 +1,27 @@
+@use 'sass:math';
+
+@use '../../foundation/mixin' as *;
+@use '../../foundation/variable' as *;
+
+/** **************************************
+ 分析実行
+ ************************************** */
+.c-progress {
+  display: flex;
+  align-items: center;
+  &__frame {
+    border: 1px solid #ddd;
+    padding: 0 0.5rem !important;
+    vertical-align: middle !important;
+  }
+  &-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    background-color: #01549C;
+    color: white;
+    text-align: center;
+    font-size: 1.4rem;
+  }
+}

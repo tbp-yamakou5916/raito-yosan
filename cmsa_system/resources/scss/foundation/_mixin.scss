@@ -1,0 +1,144 @@
+@use 'sass:color';
+@use 'sass:map';
+@use 'sass:math';
+
+@use './variable' as *;
+@use './icons' as *;
+
+// $base-vars引数（_variable）から基準となる定数を取得
+@function BaseVar($key) {
+  @return map.get($base-vars, $key);
+}
+
+// $colors引数（_variable）から基準色を取得
+@function Colors($key, $opacity: 1) {
+  $color: map.get($colors, $key);
+  @if $opacity < 1 {
+    $color: rgba(
+        color.red($color),
+        color.green($color),
+        color.blue($color),
+        $opacity
+    );
+  }
+  @return $color;
+}
+
+// figma %をemで返す
+@function LetterSpacing($percentage) {
+  @return math.div($percentage, 100) + em;
+}
+@function LetterSpacingPx($px, $font-size) {
+  @return math.div($px, $font-size) + em;
+}
+
+// line-heightを基本サイズ（px）と高さ（px）をベースに小数点第2位までの値を計算
+@function LineHeight($size, $height) {
+  $lh: math.div($height, $size);
+  $lh: math.floor($lh * 100);
+  @return math.div($lh, 100);
+}
+
+// 二つの値から%の値を返す
+@function Percentage($num1, $num2) {
+  $n: math.div($num1, $num2);
+  $n: $n * 10000;
+  $n: math.floor($n);
+  $n: $n * 0.0001;
+  @return math.percentage($n);
+}
+
+// pix指定のサイズをremで返す
+@function Rem($size) {
+  @return math.div($size, 10) + rem;
+}
+
+// 時間の取得
+@function Speeds($key: 'normal') {
+  @return map.get($speeds, $key);
+}
+
+// タイミングの取得
+@function Transitions($key: 'normal') {
+  @return map.get($transitions, $key);
+}
+
+// rgbaへ変換
+@function ToRgba($key, $opacity: 1) {
+  $color: map.get($colors, $key);
+  $rgba: rgba(
+      color.red($color),
+      color.green($color),
+      color.blue($color),
+      $opacity);
+  @return $rgba;
+}
+
+// px指定のサイズを$base-vars引数（_variable）のviewportからvwの値に変換して返す
+@function Vw($px, $width: 'viewport', $important: false) {
+  $size: $px;
+  $vw: math.div($size, BaseVar($width)) * 100;
+  $vw: math.floor($vw * 100);
+  $vw: math.div($vw, 100) + vw;
+  @if $important == true {
+    $vw: $vw + '!important';
+  }
+  @return $vw;
+}
+
+// $z-index引数（_variable）から基準のz-indexを取得
+@function ZIndex($key) {
+  @return map.get($z-index, $key);
+}
+
+@mixin clamp($line) {
+  display: -webkit-box; /* stylelint-disable-line value-no-vendor-prefix */
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical; /* stylelint-disable-line property-no-vendor-prefix */
+  overflow: hidden;
+}
+
+@mixin clearfix {
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+}
+
+// フォントの切り替え
+@mixin font($font, $weight: 'regular', $style: 'normal') {
+  $font_name: '';
+  @if $font == 'ja' {
+    $font_name: map.get($fonts, 'ja'), sans-serif;
+  } @else if $font == 'en' {
+    $font_name: map.get($fonts, 'en'), sans-serif;
+  }
+  font-family: $font_name;
+  font-weight: map.get($font_weights, $weight);
+  @if $style == 'italic' or $style == 'oblique' {
+    font-style: $style;
+  }
+}
+
+@mixin hover() {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin icon($type, $property: mask) {
+  #{$property}: url('data:image/svg+xml,#{map.get($icons, $type)}') no-repeat center/100%;
+}
+
+@mixin mq($breakpoint: md) {
+  @if($breakpoint == 'all') {
+    @content;
+  } @else {
+    @media #{map.get($break_points, $breakpoint)} {
+      @content;
+    }
+  }
+}

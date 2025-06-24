@@ -1,0 +1,62 @@
+<div class="card js-expense" data-process-id="{{ $datum->id }}" data-cost-type="2">
+  <div class="card-header bg-secondary">
+    <span class="card-title">外注費</span>
+  </div>
+  <div class="card-body js-expense-body">
+    <div class="c-grid c-grid-head c-grid--outsourcing">
+      <div></div>
+      <div class="text-bold text-center">@if($is_test)［IN11］@endif数量</div>
+      <div class="text-bold text-center">@if($is_test)［OUT11］@endif単価</div>
+      <div class="text-bold text-center">@if($is_test)［OUT12］@endif予算金額</div>
+    </div>
+    @php($item_process_type = 0)
+    @foreach($expense_items->where('cost_type', 2) as $item)
+      {{-- 工程タイトル --}}
+      @if($process_type == 'all')
+        @if(!$item->values['is_custom'] && $item->process_type != $item_process_type)
+          <div class="c-grid-title">
+            {{ $item->processTypeLabel }}
+          </div>
+          @php($item_process_type = $item->process_type)
+        @endif
+      @endif
+      @include('admin.process.partials.edit1.outsourcing', [
+        'process' => $datum, 'num' => $item_num
+      ])
+      @if($is_test)
+        @include('admin.process.partials.edit1.formula')
+      @endif
+      @php($item_num++)
+    @endforeach
+
+    {{-- フォーム番号 --}}
+    {{ html()->input('hidden', 'item_num', $item_num)->class('js-expense-num') }}
+  </div>
+  @if($process_type != 'all')
+    <div class="card-footer">
+      <div class="row">
+        {{-- 費用項目名 --}}
+        @include('admin.partials.forms', [
+            'type' => 'text',
+            'name' => 'title',
+            'trans' => 'admin.master.expense_custom_item',
+            'frame' => 'col-6',
+        ])
+        @include('admin.partials.forms', [
+            'type' => 'select',
+            'name' => 'unit_id',
+            'label' => 'admin.master.unit.title',
+            'array' => $units,
+            'frame' => 'col-3',
+            'is_empty' => true,
+        ])
+        <div class="col-3 no_label">
+          <a class="btn btn-block bg-black text-white js-expense-btn js-check-ignore">
+            <i class="fa-solid fa-circle-plus"></i>
+            外注費項目追加
+          </a>
+        </div>
+      </div>
+    </div>
+  @endif
+</div>

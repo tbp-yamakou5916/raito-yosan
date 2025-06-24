@@ -1,0 +1,63 @@
+@use 'sass:math';
+
+@use '../../foundation/mixin' as *;
+@use '../../foundation/variable' as *;
+
+/** **************************************
+ 工程
+ ************************************** */
+.c-grid {
+  display: grid;
+  margin-top: 0.8rem;
+  > div {
+    padding-inline: 0.4rem;
+    .input-group-append {
+      .input-group-text {
+        justify-content: center;
+        min-width: 2rem;
+        padding-inline: .375rem;
+        font-size: 0.8rem !important;
+      }
+    }
+  }
+  &--material {
+    grid-template-columns: 30% repeat(5, 1fr) 2%;
+    //grid-template-columns: 28% 14% 14% 14% 14% 14% 2%;
+    &.--edit2 {
+      grid-template-columns: 30% repeat(5, 1fr);
+    }
+  }
+  &--outsourcing {
+    grid-template-columns: 30% repeat(3, 1fr) 2%;
+    //grid-template-columns: 16% 14% 14% 13.5% 13.5% 13.5% 13.5% 2%;
+    &.--edit2 {
+      grid-template-columns: 30% repeat(5, 1fr);
+    }
+  }
+  &-title {
+    margin-top: 0.5rem;
+    padding: 0.4rem;
+    border-radius: .2rem;
+    background-color: #efefef;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    &--main {
+      font-size: larger;
+    }
+  }
+  &-head {
+    margin-top: 0;
+    top: 0;
+    padding-block: 1rem;
+    position: sticky;
+    background-color: white;
+    z-index: 1000;
+  }
+  &-trash {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease-in;
+  }
+}

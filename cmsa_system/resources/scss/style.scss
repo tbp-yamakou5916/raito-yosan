@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+// ==========================================================================
+// Foundation Layout Object CSS
+// ==========================================================================
+
+// ==========================================================================
+// Foundation
+// ==========================================================================
+
+@use 'foundation/base';
+
+
+// ========================================
+// component
+
+@use 'object/component/c-mode';
+@use 'object/component/c-reset';
+@use 'object/component/c-chart';
+@use 'object/component/c-header';
+@use 'object/component/c-grid';
+@use 'object/component/c-output';
+@use 'object/component/c-dropdown';
+@use 'object/component/c-progress';
+@use 'object/component/c-standard';
+@use 'object/component/c-table';
+
+
+// ==========================================================================
+// Utility
+// ==========================================================================
+
+//@use 'object/utility/u-align';
+//@use 'object/utility/u-background';
+//@use 'object/utility/u-border';
+//@use 'object/utility/u-color';
+//@use 'object/utility/u-display';
+//@use 'object/utility/u-font';
+//@use 'object/utility/u-gap';
+//@use 'object/utility/u-inner';
+//@use 'object/utility/u-margin';
+//@use 'object/utility/u-padding';
+//@use 'object/utility/u-width';

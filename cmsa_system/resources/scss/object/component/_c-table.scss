@@ -1,0 +1,29 @@
+@use 'sass:math';
+
+@use '../../foundation/mixin' as *;
+@use '../../foundation/variable' as *;
+
+.c-table {
+  &-hover {
+    tbody tr:hover th,
+    tbody tr:hover td {
+      color: #212529;
+      background-color: rgba(0, 0, 0, .075);
+      &.c-striped-blue {
+        background-color: rgba(81, 145, 249, .20);
+      }
+    }
+  }
+  &-striped {
+    tbody tr:nth-of-type(odd) th,
+    tbody tr:nth-of-type(odd) td {
+      background-color: rgba(0, 0, 0, .05);
+      &.c-striped-blue {
+        background-color: rgba(81, 145, 249, .15);
+      }
+    }
+  }
+  &-foot {
+    border-top: 6px double #ddd;
+  }
+}

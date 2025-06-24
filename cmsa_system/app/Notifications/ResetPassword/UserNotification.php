@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Notifications\ResetPassword;
+
+use App\Mail\ResetPassword\UserMail;
+use Illuminate\Auth\Notifications\ResetPassword as BaseResetPassword;
+use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\MailMessage;
+
+class UserNotification extends BaseResetPassword
+{
+    use Queueable;
+
+    /**
+     * Get the notification's channels.
+     * mail / database / broadcast / nexmo / slack
+     *
+     * @param $notifiable
+     *
+     * @return string[]
+     */
+    public function via($notifiable): array {
+        return ['mail'];
+    }
+
+    /**
+     * Get the mail representation of the notification.
+     * @param $notifiable
+     *
+     * @return UserMail|MailMessage|mixed
+     */
+    public function toMail($notifiable): mixed {
+        if (static::$toMailCallback) {
+            return call_user_func(static::$toMailCallback, $notifiable, $this->token);
+        }
+
+        $reset_url = route('admin.password.reset', [
+                'token' => $this->token,
+                'email' => $notifiable->getEmailForPasswordReset()
+            ]);
+        $to = $notifiable->getEmailForPasswordReset();
+
+        return (new UserMail($reset_url))->to($to);
+    }
+}
